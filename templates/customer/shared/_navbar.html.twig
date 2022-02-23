@@ -34,12 +34,15 @@
         {% endif %}        
 
      
+        {% for onglet in OngletRepository.findAll() %}
           
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">
-             #
+              <a class="nav-link" aria-current="page" href="{{ path('boutique_product_show_by_onglet',{'id':onglet.id}) }}">
+                  {{ onglet.name }}
               </a>
             </li>
+
+{% endfor %}
 
 
             <li class="nav-item">
