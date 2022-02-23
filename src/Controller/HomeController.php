@@ -13,10 +13,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(OngletRepository $ongletRepository,BlogpostRepository $blogpostRepository): Response
     {
-        //Je vais chercher dans la bdd les categories
         $onglet = $ongletRepository->findAll();
-
-        //Je vais chercher les 8 derniers produits
         $blogpost = $blogpostRepository->findBy(
                 [],
                 [
