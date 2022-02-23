@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\OngletRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OngletRepository::class)]
 class Onglet
@@ -14,7 +17,16 @@ class Onglet
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Le champs nom est obligatoire')]
     private $name;
+
+    #[ORM\OneToMany(mappedBy: 'onglet', targetEntity: Blogpost::class, orphanRemoval: true)]
+    private $blogpost;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -31,5 +43,40 @@ class Onglet
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Blogpost[]
+     */
+    public function getBlogpost(): Collection
+    {
+        return $this->blogpost;
+    }
+
+    public function addBlogpost(Blogpost $blogpost): self
+    {
+        if (!$this->blogpost->contains($blogpost)) {
+            $this->blogpost[] = $blogpost;
+            $blogpost->setOnglet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Blogpost $blogpost): self
+    {
+        if ($this->blogpost->removeElement($blogpost)) {
+            // set the owning side to null (unless already changed)
+            if ($blogpost->getOnglet() === $this) {
+                $blogpost->setOnglet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

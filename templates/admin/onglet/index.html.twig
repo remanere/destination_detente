@@ -19,8 +19,8 @@
                 <td>{{ onglet.id }}</td>
                 <td>{{ onglet.name }}</td>
                 <td>
-                    <a href="{{ path('onglet_show', {'id': onglet.id}) }}">show</a>
-                    <a href="{{ path('onglet_edit', {'id': onglet.id}) }}">edit</a>
+                    <a href="{{ path('admin_onglet_show', {'id': onglet.id}) }}">show</a>
+                    <a href="{{ path('admin_onglet_edit', {'id': onglet.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('onglet_new') }}">Create new</a>
+    <a href="{{ path('admin_onglet_new') }}">Create new</a>
 {% endblock %}

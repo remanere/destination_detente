@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for blogpost in blogposts %}
+        {% for blogpost in blogpost %}
             <tr>
                 <td>{{ blogpost.id }}</td>
                 <td>{{ blogpost.titre }}</td>
@@ -27,8 +27,8 @@
                 <td>{{ blogpost.imagePath }}</td>
                 <td>{{ blogpost.date ? blogpost.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('blogpost_show', {'id': blogpost.id}) }}">show</a>
-                    <a href="{{ path('blogpost_edit', {'id': blogpost.id}) }}">edit</a>
+                    <a href="{{ path('admin_blogpost_show', {'id': blogpost.id}) }}">show</a>
+                    <a href="{{ path('admin_blogpost_edit', {'id': blogpost.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('blogpost_new') }}">Create new</a>
+    <a href="{{ path('admin_blogpost_new') }}">Create new</a>
 {% endblock %}

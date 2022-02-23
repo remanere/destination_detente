@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Onglet;
 use App\Form\OngletType;
@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/onglet')]
-class OngletController extends AbstractController
+class AdminOngletController extends AbstractController
 {
     #[Route('/', name: 'admin_onglet_index', methods: ['GET'])]
     public function index(OngletRepository $ongletRepository): Response
     {
-        return $this->render('onglet/index.html.twig', [
+        return $this->render('admin/onglet/index.html.twig', [
             'onglets' => $ongletRepository->findAll(),
         ]);
     }
@@ -45,6 +45,13 @@ class OngletController extends AbstractController
     #[Route('/{id}', name: 'admin_onglet_show', methods: ['GET'])]
     public function show(Onglet $onglet): Response
     {
+        $onglet = $OngletRepository->find($id);
+
+        if(!$onglet)
+        {
+            $this->addFlash("danger","Onglet introuvable");
+            return $this->redirectToRoute("admin_onglet_index");
+        }
         return $this->render('admin/onglet/show.html.twig', [
             'onglet' => $onglet,
         ]);

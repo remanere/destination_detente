@@ -1,28 +1,35 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Blogpost;
 use App\Form\BlogpostType;
 use App\Repository\BlogpostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/blogpost')]
-class BlogpostController extends AbstractController
+#[Route('admin/blogpost')]
+class AdminBlogpostController extends AbstractController
 {
-    #[Route('/', name: 'blogpost_index', methods: ['GET'])]
-    public function index(BlogpostRepository $blogpostRepository): Response
+    #[Route('/', name: 'admin_blogpost_index', methods: ['GET'])]
+    public function index(BlogpostRepository $blogpostRepository,PaginatorInterface $paginator, Request $request): Response
     {
-        return $this->render('blogpost/index.html.twig', [
-            'blogposts' => $blogpostRepository->findAll(),
+        $blogpost = $paginator->paginate(
+            $blogpostRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            4 /*limit per page*/
+        );
+
+        return $this->render('admin/blogpost/index.html.twig', [
+            'blogpost' => $blogpost,
         ]);
     }
 
-    #[Route('/new', name: 'blogpost_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'admin_blogpost_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $blogpost = new Blogpost();
@@ -33,24 +40,24 @@ class BlogpostController extends AbstractController
             $entityManager->persist($blogpost);
             $entityManager->flush();
 
-            return $this->redirectToRoute('blogpost_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_blogpost_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('blogpost/new.html.twig', [
+        return $this->renderForm('admin/blogpost/new.html.twig', [
             'blogpost' => $blogpost,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'blogpost_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'admin_blogpost_show', methods: ['GET'])]
     public function show(Blogpost $blogpost): Response
     {
-        return $this->render('blogpost/show.html.twig', [
+        return $this->render('admin/blogpost/show.html.twig', [
             'blogpost' => $blogpost,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'blogpost_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'admin_blogpost_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Blogpost $blogpost, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(BlogpostType::class, $blogpost);
@@ -59,16 +66,16 @@ class BlogpostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('blogpost_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_blogpost_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('blogpost/edit.html.twig', [
+        return $this->renderForm('admin/blogpost/edit.html.twig', [
             'blogpost' => $blogpost,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'blogpost_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'admin_blogpost_delete', methods: ['POST'])]
     public function delete(Request $request, Blogpost $blogpost, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$blogpost->getId(), $request->request->get('_token'))) {
@@ -76,6 +83,6 @@ class BlogpostController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('blogpost_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_blogpost_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -28,6 +28,10 @@ class Blogpost
     #[ORM\Column(type: 'datetime')]
     private $date;
 
+    #[ORM\ManyToOne(targetEntity: Onglet::class, inversedBy: 'blogpost')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $onglet;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +93,18 @@ class Blogpost
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getOnglet(): ?Onglet
+    {
+        return $this->onglet;
+    }
+
+    public function setOnglet(?Onglet $onglet): self
+    {
+        $this->onglet = $onglet;
 
         return $this;
     }
