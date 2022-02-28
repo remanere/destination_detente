@@ -21,7 +21,7 @@ class Onglet
     private $name;
 
     #[ORM\OneToMany(mappedBy: 'onglet', targetEntity: Blogpost::class, orphanRemoval: true)]
-    private $blogpost;
+    private $blogposts;
 
     public function __construct()
     {
@@ -48,15 +48,15 @@ class Onglet
     /**
      * @return Collection|Blogpost[]
      */
-    public function getBlogpost(): Collection
+    public function getBlogposts(): Collection
     {
-        return $this->blogpost;
+        return $this->blogposts;
     }
 
     public function addBlogpost(Blogpost $blogpost): self
     {
-        if (!$this->blogpost->contains($blogpost)) {
-            $this->blogpost[] = $blogpost;
+        if (!$this->blogposts->contains($blogpost)) {
+            $this->blogposts[] = $blogpost;
             $blogpost->setOnglet($this);
         }
 
@@ -65,7 +65,7 @@ class Onglet
 
     public function removeProduct(Blogpost $blogpost): self
     {
-        if ($this->blogpost->removeElement($blogpost)) {
+        if ($this->blogposts->removeElement($blogpost)) {
             // set the owning side to null (unless already changed)
             if ($blogpost->getOnglet() === $this) {
                 $blogpost->setOnglet(null);

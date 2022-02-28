@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
@@ -23,7 +24,24 @@ class Commentaire
     private $contenu;
 
     #[ORM\Column(type: 'datetime')]
-    private $date;
+    private $createdAt;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commentaire')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+    #[ORM\ManyToOne(targetEntity: Blogpost::class, inversedBy: 'commentaire')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $blogpost;
+    
+    #[ORM\PrePersist]
+    public function prePersist()
+    {
+        if(empty($this->createdAt))
+        {
+            $this->createdAt = new DateTime();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -66,14 +84,38 @@ class Commentaire
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->createdAt;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->date = $date;
+        $this->date = $createdAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getBlogpost(): ?Blogpost
+    {
+        return $this->blogpost;
+    }
+
+    public function setBlogpost(?Blogpost $blogpost): self
+    {
+        $this->blogpost = $blogpost;
 
         return $this;
     }

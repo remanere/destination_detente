@@ -12,20 +12,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('admin/blogpost')]
+#[Route('/blogpost')]
 class AdminBlogpostController extends AbstractController
 {
     #[Route('/', name: 'admin_blogpost_index', methods: ['GET'])]
     public function index(BlogpostRepository $blogpostRepository,PaginatorInterface $paginator, Request $request): Response
     {
-        $blogpost = $paginator->paginate(
+        $blogposts = $paginator->paginate(
             $blogpostRepository->findAll(), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
             4 /*limit per page*/
         );
 
         return $this->render('admin/blogpost/index.html.twig', [
-            'blogpost' => $blogpost,
+            'blogposts' => $blogposts,
         ]);
     }
 

@@ -36,16 +36,16 @@ class AdminOngletController extends AbstractController
             return $this->redirectToRoute('admin_onglet_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/onglet/new.html.twig', [
+        return $this->render('admin/onglet/new.html.twig', [
             'onglet' => $onglet,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'admin_onglet_show', methods: ['GET'])]
-    public function show(Onglet $onglet): Response
+    public function show(int $id, OngletRepository $ongletRepository): Response
     {
-        $onglet = $OngletRepository->find($id);
+        $onglet = $ongletRepository->find($id);
 
         if(!$onglet)
         {

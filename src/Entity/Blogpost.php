@@ -19,16 +19,16 @@ class Blogpost
     #[ORM\Column(type: 'text')]
     private $contenu;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $creatAt;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image_path;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime',  nullable: true)]
     private $date;
 
-    #[ORM\ManyToOne(targetEntity: Onglet::class, inversedBy: 'blogpost')]
+    #[ORM\ManyToOne(targetEntity: Onglet::class, inversedBy: 'blogposts')]
     #[ORM\JoinColumn(nullable: false)]
     private $onglet;
 

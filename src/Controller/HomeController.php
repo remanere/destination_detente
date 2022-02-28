@@ -13,8 +13,8 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(OngletRepository $ongletRepository,BlogpostRepository $blogpostRepository): Response
     {
-        $onglet = $ongletRepository->findAll();
-        $blogpost = $blogpostRepository->findBy(
+        $onglets = $ongletRepository->findAll();
+        $blogposts = $blogpostRepository->findBy(
                 [],
                 [
                     'id' => 'DESC'
@@ -24,8 +24,8 @@ class HomeController extends AbstractController
 
         //Je les envoie dans la vue
         return $this->render('customer/home.html.twig',[
-            'onglet' => $onglet,
-            'blogpost' => $blogpost
+            'onglet' => $onglets,
+            'blogposts' => $blogposts
         ]);
     }
 }
