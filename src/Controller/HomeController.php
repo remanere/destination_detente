@@ -24,7 +24,7 @@ class HomeController extends AbstractController
 
         //Je les envoie dans la vue
         return $this->render('customer/home.html.twig',[
-            'onglet' => $onglets,
+            'onglets' => $onglets,
             'blogposts' => $blogposts
         ]);
     }
