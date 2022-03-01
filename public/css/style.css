@@ -6,12 +6,16 @@
 
 .imageCarousel
 {
-    height: 500px;
+    height: 600px;
     object-fit: cover;
 }
 
 .imageDetailProduct
 {
-    height: 600px;
+    height: 500px;
     object-fit: cover;
 }
+
+.logo {
+    height: 100px;
+  }

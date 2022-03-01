@@ -17,8 +17,10 @@ class AdminOngletController extends AbstractController
     #[Route('/', name: 'admin_onglet_index', methods: ['GET'])]
     public function index(OngletRepository $ongletRepository): Response
     {
-        return $this->render('admin/onglet/index.html.twig', [
-            'onglets' => $ongletRepository->findAll(),
+         $onglets = $ongletRepository->findAll();
+
+         return $this->render('admin/onglet/index.html.twig', [
+             'onglets' => $onglets,
         ]);
     }
 

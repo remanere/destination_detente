@@ -19,13 +19,13 @@
             </div>
             <div class="col-sm-12 col-md-6">
 
-                   <h5 class="card-title">{{ blogpost.name }}</h5>
+                   <h5 class="card-title">{{ blogpost.titre }}</h5>
           
             <p>{{ blogpost.contenu }}</p>
             <hr>
                   <a class="btn btn-outline-dark" href="{{ path('home') }}">Revenir à l'accueil</a>
-                
-                
+                  <a class="btn btn-outline-dark" href="{{ path('boutique_blogpost_show_by_onglet',{'id': blogpost.id}) }}">Revenir à la page précédente</a>
+                       
             </div>
 
         </div>
@@ -49,7 +49,7 @@
                     <div class="card bg-dark text-dark text-center">
                         <img src="{{ blogpost.imagePath }}" class="card-img imageCard" alt="image_category">
                         <div class="card-img-overlay">
-                            <h5 class="card-title">{{ blogpost.name }}</h5>
+                            <h5 class="card-title">{{ blogpost.titre }}</h5>
                             <a href="{{ path('boutique_blogpost_detail',{'id': blogpost.id} ) }}" class="btn btn-outline-light">Consulter</a>
                         </div>
                     </div>

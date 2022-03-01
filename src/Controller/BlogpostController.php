@@ -20,7 +20,7 @@ class BlogpostController extends AbstractController
             return $this->redirectToRoute("home");
         }
 
-        return $this->render("customer/onglet/show_by_onglet.html.twig",[
+        return $this->render("customer/blogpost/show_by_onglet.html.twig",[
             'onglet' => $onglet
         ]);
     }
