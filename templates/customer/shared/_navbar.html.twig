@@ -37,7 +37,7 @@
     {% for onglet in ongletRepository.findAll() %}
           
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{ path('boutique_blogpost_show_by_onglet',{'id':onglet.id}) }}">
+              <a class="nav-link" aria-current="page" href="{{ path('boutique_blogpost_detail',{'id':onglet.id}) }}">
                 {{ onglet.name }}
               </a>
             </li>

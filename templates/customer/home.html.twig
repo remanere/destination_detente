@@ -34,10 +34,24 @@
     <div class="container py-5">
     <div class="row">
           <div class="col-12">
-            <h3 class="text-center text-white">Les catégories</h3>
+            <h3 class="text-center text-white">Les onglets</h3>
           </div>  
 
- 
+          {% for onglet in onglets %}
+
+              <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
+
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ onglet.name }}</h5>
+                          <a href="{{ path('boutique_blogpost_detail',{'id':onglet.id}) }}" class="btn btn-primary w-100">Consulter</a>
+                      </div>
+                  </div>
+          
+              </div>
+              
+          {% endfor %}
+
       </div>
     </div>
   </section>
@@ -46,15 +60,31 @@
   <div class="container py-5">
       <div class="row">
         <div class="col-12">
-          <h3 class="text-center">Les nouveautés</h3>
+          <h3 class="text-center">Informations et contacts</h3>
         </div>  
 
-  
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Informations pratique</h5>
+                        <a href="#" class="btn btn-primary w-100">Consulter</a>
+                    </div>
+                </div>
+                  <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nous contacter</h5>
+                        <a href="#" class="btn btn-primary w-100">Consulter</a>
+                    </div>
+                </div>
+        
+            </div>
 
     </div>
      </div>
   </section>
    
+
 
 
 {% endblock %}

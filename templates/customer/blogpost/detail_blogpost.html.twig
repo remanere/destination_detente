@@ -2,6 +2,33 @@
 
 {% block body %}
 
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://destinationdetente.weebly.com/uploads/4/8/5/6/48562933/4871460_orig.jpg" class="d-block w-100 imageCarousel" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://destinationdetente.weebly.com/uploads/4/8/5/6/48562933/5411401_orig.jpg" class="d-block w-100 imageCarousel" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://destinationdetente.weebly.com/uploads/4/8/5/6/48562933/6045250_orig.jpg" class="d-block w-100 imageCarousel" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
   <section>
       <div class="container py-5">
         <div class="row">
@@ -22,6 +49,7 @@
                    <h5 class="card-title">{{ blogpost.titre }}</h5>
           
             <p>{{ blogpost.contenu }}</p>
+            <a class="btn btn-outline-dark" href="#">informations et inscription</a>
             <hr>
                   <a class="btn btn-outline-dark" href="{{ path('home') }}">Revenir à l'accueil</a>
                   <a class="btn btn-outline-dark" href="{{ path('boutique_blogpost_show_by_onglet',{'id': blogpost.id}) }}">Revenir à la page précédente</a>
