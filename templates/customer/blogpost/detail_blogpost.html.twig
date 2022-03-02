@@ -37,10 +37,7 @@
 
             <div class="col-sm-6 col-md-6">
 
-                <div class="card">
-                   <div class="card bg-dark">
-                    <img src="{{ blogpost.imagePath }}" class="card-img imageDetailProduct" alt="image_category">
-                </div>
+          
                 
             </div>
             </div>
@@ -48,7 +45,7 @@
 
                    <h5 class="card-title">{{ blogpost.titre }}</h5>
           
-            <p>{{ blogpost.contenu }}</p>
+            <p>{{ blogpost.contenu | raw }}</p>
             <a class="btn btn-outline-dark" href="#">informations et inscription</a>
             <hr>
                   <a class="btn btn-outline-dark" href="{{ path('home') }}">Revenir à l'accueil</a>
@@ -70,21 +67,7 @@
                 <h3 class="text-center">Suggestions</h3>
             </div>  
 
-            {% for blogpost in suggestedBlogposts %}
-
-                <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
-
-                    <div class="card bg-dark text-dark text-center">
-                        <img src="{{ blogpost.imagePath }}" class="card-img imageCard" alt="image_category">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">{{ blogpost.titre }}</h5>
-                            <a href="{{ path('boutique_blogpost_detail',{'id': blogpost.id} ) }}" class="btn btn-outline-light">Consulter</a>
-                        </div>
-                    </div>
-            
-                </div>
-                
-            {% endfor %}
+     
 
         </div>
     </div>

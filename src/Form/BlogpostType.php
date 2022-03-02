@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class BlogpostType extends AbstractType
 {
@@ -22,7 +23,7 @@ class BlogpostType extends AbstractType
                 'placeholder' => 'Ecrire ici le nom...'
             ]
         ])
-            ->add('contenu',TextType::class,[
+            ->add('contenu',CKEditorType::class,[
                 'label' => 'Description',
                 'required' => false,
                 'attr' => [
@@ -34,15 +35,6 @@ class BlogpostType extends AbstractType
                 'placeholder' => '-- Choisir --',
                 'required' => false,
                 'class' => Onglet::class
-            ])
-         
-            ->add('image_path',TextType::class,[
-                'label' => 'Image du produit',
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Ajouter le chemin de l\'image ici'
-                ]
-
             ])
       
         ;
