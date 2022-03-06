@@ -37,18 +37,18 @@
      
               {% include "_messages_flash.html.twig" %}
 
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-12 col-md-12">
 
           
                 
             </div>
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-12">
 
                    <h5 class="card-title">{{ blogpost.titre }}</h5>
           
             <p>{{ blogpost.contenu | raw }}</p>
-            <a class="btn btn-outline-dark" href="#">informations et inscription</a>
+            <a class="btn btn-outline-dark" href="mailto:destinationdetente@hotmail.fr">information / inscription</a>
             <hr>
                   <a class="btn btn-outline-dark" href="{{ path('home') }}">Revenir à l'accueil</a>
                   <a class="btn btn-outline-dark" href="{{ path('boutique_blogpost_show_by_onglet',{'id': blogpost.id}) }}">Revenir à la page précédente</a>
@@ -60,19 +60,5 @@
 
   </section>
 
-   <section>
  
-    <div class="container py-5">
-      <hr>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">Suggestions</h3>
-            </div>  
-
-     
-
-        </div>
-    </div>
-  </section>
-
 {% endblock %}

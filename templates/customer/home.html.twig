@@ -30,25 +30,23 @@
 </div>
 
 
-  <section class="bg-secondary">
+  <section class="profile-area">
     <div class="container py-5">
     <div class="row">
-          <div class="col-12">
-            <h3 class="text-center text-white">Les onglets</h3>
-          </div>  
-
+      <h2></h2>
           {% for onglet in onglets %}
 
-              <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
-
-                  <div class="card">
-                      <div class="card-body">
-                          <h5 class="card-title">{{ onglet.name }}</h5>
-                          <a href="{{ path('boutique_blogpost_detail',{'id':onglet.id}) }}" class="btn btn-primary w-100">Consulter</a>
-                      </div>
-                  </div>
-          
-              </div>
+         <div class="col-sm-12 col-lg-4 mt-3">
+                     <div class="card">
+                         <div class="img1"><img src="{{ onglet.image_path }}" class="card-img img1" alt="image_category"></div>
+                         <div class="img2"><img src="https://i.postimg.cc/W1FvF8v3/logo.png" alt=""></div>
+                        <div class="main-text">
+                              <h5 class="card-title">{{ onglet.name }}</h5>
+                              <a href="{{ path('boutique_blogpost_show_by_onglet',{'id': onglet.id}) }}"  class="btn btn-outline-dark">Consulter</a>
+                           </div>  
+                     </div>
+                 </div>
+              
               
           {% endfor %}
 
@@ -56,34 +54,6 @@
     </div>
   </section>
 
-  <section>
-  <div class="container py-5">
-      <div class="row">
-        <div class="col-12">
-          <h3 class="text-center">Informations et contacts</h3>
-        </div>  
-
-            <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Informations pratique</h5>
-                        <a href="#" class="btn btn-primary w-100">Consulter</a>
-                    </div>
-                </div>
-                  <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Nous contacter</h5>
-                        <a href="#" class="btn btn-primary w-100">Consulter</a>
-                    </div>
-                </div>
-        
-            </div>
-
-    </div>
-     </div>
-  </section>
-   
 
 
 

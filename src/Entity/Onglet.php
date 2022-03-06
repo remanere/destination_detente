@@ -20,6 +20,10 @@ class Onglet
     #[Assert\NotBlank(message: 'Le champs nom est obligatoire')]
     private $name;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Le champs image est obligatoire')]
+    public $image_path;
+
     #[ORM\OneToMany(mappedBy: 'onglet', targetEntity: Blogpost::class, orphanRemoval: true)]
     private $blogposts;
 
@@ -41,6 +45,18 @@ class Onglet
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImage_path(): ?string
+    {
+        return $this->image_path;
+    }
+
+    public function setImage_path(?string $image_path): self
+    {
+        $this->image_path = $image_path;
 
         return $this;
     }

@@ -11,12 +11,13 @@
 
         {% for blogpost in onglet.blogposts %}
 
-            <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
+            <div class="col-sm-12 col-md-12 col-lg-6 mt-3">
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-center">
+                        <div class="img1"><img src="{{ onglet.image_path }}" class="card-img img1" alt="image_category"></div>
                         <h5 class="card-title">{{ blogpost.titre }}</h5>
-                        <a href="{{ path('boutique_blogpost_detail',{'id': blogpost.id} ) }}" class="btn btn-primary w-100">Consulter</a>
+                        <a href="{{ path('boutique_blogpost_detail',{'id': blogpost.id} ) }}" class="btn btn-outline-dark">Consulter</a>
                     </div>
                 </div>
         

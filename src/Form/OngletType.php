@@ -20,6 +20,15 @@ class OngletType extends AbstractType
                 'placeholder' => 'Ecrire ici le nom...'
             ]
         ])
+
+        ->add('image_path',TextType::class,[
+            'label' => 'Image de l\'onglet',
+            'required' => false,
+            'attr' => [
+                'placeholder' => 'Ajouter le chemin de l\'image ici'
+            ]
+
+        ])
         ;
     }
 

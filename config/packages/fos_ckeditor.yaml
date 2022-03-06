@@ -7,6 +7,6 @@ fos_ck_editor:
     configs:
         main_config:
             toolbar:
-                - { name: "styles", items: ['Bold', 'Italic', 'Underline', '-',
+                - { name: "styles", items: ['Bold', 'Italic', 'Underline',
                                             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-',
-                                             'Format','FontSize', ] }
+                                             'Format','FontSize','TextColor','BGColor','Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] }

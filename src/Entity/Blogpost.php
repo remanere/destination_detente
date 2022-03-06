@@ -22,9 +22,6 @@ class Blogpost
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $creatAt;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $image_path;
-
     #[ORM\Column(type: 'datetime',  nullable: true)]
     private $date;
 
@@ -69,18 +66,6 @@ class Blogpost
     public function setCreatAt(\DateTimeImmutable $creatAt): self
     {
         $this->creatAt = $creatAt;
-
-        return $this;
-    }
-
-    public function getImagePath(): ?string
-    {
-        return $this->image_path;
-    }
-
-    public function setImagePath(?string $image_path): self
-    {
-        $this->image_path = $image_path;
 
         return $this;
     }
